@@ -1,11 +1,23 @@
 {
-  "name": "powershellprofilecustomizer",
-  "displayName": "PowerShell Profile Customizer",
-  "description": "Customizes the PowerShell profile in VS Code",
-  "version": "0.0.2",
+  "name": "terminalcustomizer-vscode",
+  "displayName": "Terminal Customizer for VSCode",
+  "description": "Customizes the PowerShell, Windows PowerShell, and Command Prompt profiles in VS Code",
+  "icon": "icon/terminal_2.png",
+  "version": "1.0.3",
+  "keywords": [
+    "terminal",
+    "powershell",
+    "command prompt",
+    "customization",
+    "VS Code terminal",
+    "profile",
+    "windows terminal",
+    "terminal theme",
+    "terminal config"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/riCatwik/PowerShellProfileCustomizer.git"
+    "url": "https://github.com/riCatwik/Terminal_Customizer-VSCode.git"
   },
   "publisher": "ritwikdas",
   "author": {
@@ -17,6 +29,8 @@
     "vscode": "^1.81.0"
   },
   "categories": [
+    "Themes",
+    "Formatters",
     "Other"
   ],
   "activationEvents": [
@@ -26,7 +40,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "powershellprofilecustomizer.helloWorld",
+        "command": "terminalcustomizer-vscode.helloWorld",
         "title": "Hello World"
       }
     ]
@@ -43,19 +57,19 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.81.0",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
+    "@types/vscode": "^1.81.0",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",
+    "@vscode/test-electron": "^2.2.3",
     "eslint": "^8.34.0",
     "glob": "^8.1.0",
     "mocha": "^10.2.0",
-    "typescript": "^4.9.5",
     "ts-loader": "^9.4.2",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1",
-    "@vscode/test-electron": "^2.2.3"
+    "typescript": "^4.9.5",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
   }
 }
