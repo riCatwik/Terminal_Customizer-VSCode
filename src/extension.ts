@@ -1,26 +1,65 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
+import * as fs from 'fs';
+import * as path from 'path';
 import * as vscode from 'vscode';
 
 // This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+	let psProfilePath = path.join(process.env.USERPROFILE || '', 'Documents', 'PowerShell', 'Microsoft.PowerShell_profile.ps1');
+	let backupPath = psProfilePath + '.backup';
+	let psProfileDir = path.dirname(psProfilePath);
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "powershellprofilecustomizer" is now active!');
+	// Ensure the directory exists
+	if (!fs.existsSync(psProfileDir)) {
+		fs.mkdirSync(psProfileDir, { recursive: true });
+	}
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('powershellprofilecustomizer.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from PowerShellProfileCustomizer!');
-	});
+	if (!fs.existsSync(backupPath)) {
+		if (fs.existsSync(psProfilePath)) {
+			fs.copyFileSync(psProfilePath, backupPath);  // Create a backup before modifying
+		}
+	}
 
-	context.subscriptions.push(disposable);
+	let newPromptFunction =
+		"function prompt {\n" +
+		"    # Display the current path in green\n" +
+		"    $currentPath = $PWD.Path\n" +
+		"    Write-Host $currentPath -NoNewline -ForegroundColor Green\n" +
+		"    Write-Host \"`n> \" -NoNewline\n" +
+		"    return \" \"\n" +
+		"}";
+
+	if (fs.existsSync(psProfilePath)) {
+		let content = fs.readFileSync(psProfilePath, 'utf8');
+		if (!content.includes('function prompt')) {
+			content += newPromptFunction;
+			fs.writeFileSync(psProfilePath, content, 'utf8');
+		}
+	} else {
+		fs.writeFileSync(psProfilePath, newPromptFunction, 'utf8');
+	}
+
+	vscode.window.showInformationMessage('PowerShell profile customized!');
 }
 
+
+
+
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+	let psProfilePath = path.join(process.env.USERPROFILE || '', 'Documents', 'PowerShell', 'Microsoft.PowerShell_profile.ps1');
+	let backupPath = psProfilePath + '.backup';
+
+	// Check if backup exists
+	if (fs.existsSync(backupPath)) {
+		// Ask the user if they want to restore their original profile
+		vscode.window.showInformationMessage('Do you want to restore your original PowerShell profile?', 'Yes', 'No').then(selection => {
+			if (selection === 'Yes') {
+				fs.copyFileSync(backupPath, psProfilePath);  // Restore from backup
+				fs.unlinkSync(backupPath);  // Delete the backup after restoring
+				vscode.window.showInformationMessage('Original PowerShell profile restored.');
+			}
+		});
+	}
+}
