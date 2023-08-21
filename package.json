@@ -1,8 +1,8 @@
 {
   "name": "powershellprofilecustomizer",
-  "displayName": "PowerShellProfileCustomizer",
+  "displayName": "PowerShell Profile Customizer",
   "description": "Customizes the PowerShell profile in VS Code",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/riCatwik/PowerShellProfileCustomizer.git"
