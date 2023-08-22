@@ -31,7 +31,7 @@ For the Command Prompt customization to take effect, the `AutoRun` key in the Wi
    - If it's empty, input the path to your `cmdProfile.cmd`, typically:
 
      ```
-     C:\Users\<YourUsername>\cmdProfile.cmd
+     "C:\Users\<YourUsername>\cmdProfile.cmd"
      ```
 
    - If there's an existing value, append the path for `cmdProfile.cmd` to the end. For example:
@@ -49,7 +49,7 @@ For the Command Prompt customization to take effect, the `AutoRun` key in the Wi
 5. Double-click the `AutoRun` string value. In the "Value data" field, input the path to your `cmdProfile.cmd`, typically:
 
    ```
-   C:\Users\<YourUsername>\cmdProfile.cmd
+   "C:\Users\<YourUsername>\cmdProfile.cmd"
    ```
 
 **Note:** Replace `<YourUsername>` with your actual Windows username.
