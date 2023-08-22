@@ -56,22 +56,24 @@ For the Command Prompt customization to take effect, the `AutoRun` key in the Wi
 
 Ensure you're careful while editing the Windows Registry; incorrect changes can affect system behavior.
 
-## Known Issues
+## Known Issues and Reporting
 
 - Please back up your profiles (PowerShell, Windows PowerShell, Command Prompt) before using the extension.
 - Report issues on the [GitHub repository](https://github.com/riCatwik/Terminal_Customizer-VSCode).
 
 ## Feedback
 
-Feedback is invaluable! For suggestions or issues, open an issue on [my GitHub repo](https://github.com/riCatwik/Terminal_Customizer-VSCode).
+For suggestions or feedback, please fill out [this form](https://ritwikdas.gitlab.io/contact/). Alternatively, you can send an email to [ritwik.das@outlook.in](mailto:ritwik.das@outlook.in) using the subject line "[TERMINAL-VSCode] Feedback".
 
 ## Disclaimer
 
 This extension modifies the `Microsoft.PowerShell_profile.ps1`, Windows PowerShell's `profile.ps1`, and Command Prompt's profile files (`cmdProfile.cmd` in the user's home directory). Please proceed with caution when editing the Windows Registry as per the instructions above.
 
-## License, Contribution and Distribution
+## Licensing, Contribution and Distribution
 
-This project is licensed under the MIT License, allowing modifications, use, and distribution with appropriate credit. View the full license in the [`LICENSE`](https://marketplace.visualstudio.com/items/ritwikdas.terminalcustomizer-vscode/license) file in the root directory of the repository.
+### License
+
+This project is licensed under the MIT License, allowing modifications, use, and distribution with appropriate credit. View the full license in the [`LICENSE`](https://marketplace.visualstudio.com/items/ritwikdas.terminalcustomizer-vscode/license) file in the repository's root directory.
 
 ### Contribution
 
