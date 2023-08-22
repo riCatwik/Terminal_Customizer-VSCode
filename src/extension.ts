@@ -61,8 +61,8 @@ export function activate(context: vscode.ExtensionContext) {
 			case 'Command Prompt':
 				newPromptFunction =
 					"@echo off\n" +
-					"echo | set /p nul=%cd%\n" +
-					"echo ^>\n";
+					"COLOR 02\n" +
+					"PROMPT $P$_$G\n";
 				break;
 		}
 

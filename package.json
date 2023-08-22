@@ -3,7 +3,7 @@
   "displayName": "Terminal Customizer for VSCode",
   "description": "Customizes the PowerShell, Windows PowerShell, and Command Prompt profiles in VS Code",
   "icon": "icon/terminal_2.png",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "keywords": [
     "terminal",
     "powershell",

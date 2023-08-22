@@ -20,15 +20,38 @@ This VS Code extension customizes your PowerShell, Windows PowerShell, and Comma
 
 ### Special Instructions for Command Prompt Customization
 
-For the Command Prompt customization to take effect, the `AutoRun` key in the Windows Registry needs to be set to execute the `cmdProfile.cmd` located in the user's home directory. Here's how you can do it:
+For the Command Prompt customization to take effect, the `AutoRun` key in the Windows Registry needs to be modified to execute the `cmdProfile.cmd` located in the user's home directory. Here's how you can do it:
 
 1. Press `Win + R`, type `regedit`, and press Enter to open the Registry Editor.
 2. Navigate to `HKEY_CURRENT_USER\Software\Microsoft\Command Processor`.
-3. Check for an `AutoRun` key. If it doesn't exist, right-click on the right pane, select `New` -> `String Value`, and name it `AutoRun`.
-4. Double-click the `AutoRun` key, and in the `Value data` field, input the path to your `cmdProfile.cmd`. It would typically be something like `C:\Users\<YourUsername>\cmdProfile.cmd`.
-5. Click OK and close the Registry Editor.
+3. Double-click the `AutoRun` key. In the "Value data" field, input the path to your `cmdProfile.cmd`. It would typically be:
 
-Please ensure you're careful while editing the Windows Registry. Making incorrect changes can affect system behavior.
+   ```
+   C:\Users\<YourUsername>\cmdProfile.cmd
+   ```
+
+**Note:** Please replace `<YourUsername>` with your actual Windows username.
+
+#### Case-Specific Instructions
+
+If you already have a value set in the `AutoRun` key, for example, for Anaconda initialization, you can append the execution of the `cmdProfile.cmd` without removing the existing values.
+
+**Example with Anaconda Initialization:**  
+Existing value:
+
+```
+if exist "C:\Users\<YourUsername>\anaconda3\condabin\conda_hook.bat" "C:\Users\<YourUsername>\anaconda3\condabin\conda_hook.bat"
+```
+
+Append `& C:\Users\<YourUsername>\cmdProfile.cmd` to the end of the existing value. For example:
+
+```
+if exist "C:\Users\<YourUsername>\anaconda3\condabin\conda_hook.bat" "C:\Users\<YourUsername>\anaconda3\condabin\conda_hook.bat" & "C:\Users\<YourUsername>\cmdProfile.cmd"
+```
+
+This ensures that both the Anaconda hook (or any other command you previously had) and your custom profile script are executed when the Command Prompt starts.
+
+Always ensure you're careful while editing the Windows Registry, as making incorrect changes can affect system behavior.
 
 ## Known Issues
 
